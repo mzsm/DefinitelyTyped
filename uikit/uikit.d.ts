@@ -1,6 +1,6 @@
 // Type definitions for UIkit 2.9.0
 // Project: http://www.getuikit.com
-// Definitions by: mzsm <https://github.com/mzsm/>
+// Definitions by: MIZUSHIMA Junki <https://github.com/mzsm/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
 
 
