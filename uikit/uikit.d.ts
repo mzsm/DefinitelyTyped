@@ -130,6 +130,14 @@ declare module UIkit {
         one(events: { [key: string]: any; }, selector?: string, data?: any): JQuery;
 
         /**
+         * Attach a handler to an event for the elements. The handler is executed at most once per element per event type.
+         *
+         * @param events An object in which the string keys represent one or more space-separated event types and optional namespaces, and the values represent a handler function to be called for the event(s).
+         * @param data Data to be passed to the handler in event.data when an event occurs.
+         */
+        one(events: { [key: string]: any; }, data?: any): JQuery;
+
+        /**
          * Remove an event handler.
          */
         off(): JQuery;
@@ -254,6 +262,7 @@ declare module UIkit {
         defaults: DropdownOptions;
         remainIdle: boolean;
         show(): void;
+        hide(): void;
         registerOuterClick(): void;
         checkDimensions(): void;
         dropdown: JQuery;
@@ -293,6 +302,7 @@ declare module UIkit {
         defaluts: ModalOptions;
         scrollable: boolean;
         transition: any; /* {end: string} or boolean */
+        paddingdir: string;
         toggle(): Modal;
         show(): Modal;
         hide(force?: boolean): Modal;
@@ -371,6 +381,7 @@ declare module UIkit {
         target?: string;
         connect?: any; /* JQuery or string or boolean(false) */
         active?: any; /* JQuery or string or number */
+        animation?: any; /* string or boolean(false) */
     }
     interface ResponsiveTab extends JQuery {
         dropdown: JQuery;
@@ -432,8 +443,9 @@ declare module UIkit {
 
     interface UIkit {
         version: string;
-        $doc: Document;
-        $win: Window;
+        $doc: JQuery;
+        $win: JQuery;
+        $html: JQuery;
         //fn(command: string, options?: any): UIkit;
         component(name: string, def: Object): (element: any, options: any) => void;
         support: Support;
