@@ -82,17 +82,17 @@ interface Easyrtc {
      * @type Object
      */
     errCodes: {
-        BAD_NAME: string,
-        CALL_ERR: string,
-        DEVELOPER_ERR: string,
-        SYSTEM_ERR: string,
-        CONNECT_ERR: string,
-        MEDIA_ERR: string,
-        MEDIA_WARNING: string,
-        INTERNAL_ERR: string,
-        PEER_GONE: string,
-        ALREADY_CONNECTED: string,
-        BAD_CREDENTIAL: string,
+        BAD_NAME: string;
+        CALL_ERR: string;
+        DEVELOPER_ERR: string;
+        SYSTEM_ERR: string;
+        CONNECT_ERR: string;
+        MEDIA_ERR: string;
+        MEDIA_WARNING: string;
+        INTERNAL_ERR: string;
+        PEER_GONE: string;
+        ALREADY_CONNECTED: string;
+        BAD_CREDENTIAL: string;
         ICECANDIDATE_ERR: string
     }
     apiVersion: string;
@@ -132,7 +132,7 @@ interface Easyrtc {
      *               }
      *          });
      */
-    getAudioSourceList(callback: (list: {label:string, id:string, kind:string}[]) => void): void;
+    getAudioSourceList(callback: (list: {label:string; id:string; kind:string}[]) => void): void;
 
     /**
      * Gets a list of the available video sources (ie, cameras)
@@ -146,7 +146,7 @@ interface Easyrtc {
      *               }
      *          });
      */
-    getVideoSourceList(callback: (list: {label:string, id:string, kind:string}[]) => void): void;
+    getVideoSourceList(callback: (list: {label:string; id:string; kind:string}[]) => void): void;
 
     /** The height of the local media stream video in pixels. This field is set an indeterminate period
      * of time after easyrtc.initMediaSource succeeds. Note: in actuality, the dimensions of a video stream
@@ -293,60 +293,60 @@ interface Easyrtc {
      * @param {Object} filter depends on whether Chrome or Firefox is used. See the default filters for guidance.
      * It is still experimental.
      */
-    getPeerStatistics(easyrtcid: string, callback: (easyrtcid: string, localStats: {connected: boolean, [key: string]: any}) => void, filter?: any): void;
+    getPeerStatistics(easyrtcid: string, callback: (easyrtcid: string, localStats: {connected: boolean; [key: string]: any}) => void, filter?: any): void;
     
     chromeStatsFilter: [
         {
-            "googTransmitBitrate": string,
-            "googActualEncBitrate": string,
-            "googAvailableSendBandwidth": string
+            "googTransmitBitrate": string;
+            "googActualEncBitrate": string;
+            "googAvailableSendBandwidth": string;
         },
         {
-            "googCodecName": string,
-            "googTypingNoiseState": string,
-            "packetsSent": string,
-            "bytesSent": string
+            "googCodecName": string;
+            "googTypingNoiseState": string;
+            "packetsSent": string;
+            "bytesSent": string;
         },
         {
-            "googCodecName": string,
-            "googFrameRateSent": string,
-            "packetsSent": string,
-            "bytesSent": string
+            "googCodecName": string;
+            "googFrameRateSent": string;
+            "packetsSent": string;
+            "bytesSent": string;
         },
         {
-            "packetsLost": string,
-            "packetsReceived": string,
-            "bytesReceived": string,
-            "googFrameRateOutput": string
+            "packetsLost": string;
+            "packetsReceived": string;
+            "bytesReceived": string;
+            "googFrameRateOutput": string;
         },
         {
-            "packetsLost": string,
-            "packetsReceived": string,
-            "bytesReceived": string,
-            "audioOutputLevel": string
+            "packetsLost": string;
+            "packetsReceived": string;
+            "bytesReceived": string;
+            "audioOutputLevel": string;
         },
         {
-            "googRemoteAddress": string,
-            "googActiveConnection": string
+            "googRemoteAddress": string;
+            "googActiveConnection": string;
         },
         {
-            "audioInputLevel": string
+            "audioInputLevel": string;
         }
     ];
     firefoxStatsFilter: {
-        "outboundrtp_audio.bytesSent": string,
-        "outboundrtp_video.bytesSent": string,
-        "inboundrtp_video.bytesReceived": string,
-        "inboundrtp_audio.bytesReceived": string,
-        "outboundrtp_audio.packetsSent": string,
-        "outboundrtp_video.packetsSent": string,
-        "inboundrtp_video.packetsReceived": string,
-        "inboundrtp_audio.packetsReceived": string,
-        "inboundrtp_video.packetsLost": string,
-        "inboundrtp_audio.packetsLost": string,
-        "firefoxRemoteAddress": string
+        "outboundrtp_audio.bytesSent": string;
+        "outboundrtp_video.bytesSent": string;
+        "inboundrtp_video.bytesReceived": string;
+        "inboundrtp_audio.bytesReceived": string;
+        "outboundrtp_audio.packetsSent": string;
+        "outboundrtp_video.packetsSent": string;
+        "inboundrtp_video.packetsReceived": string;
+        "inboundrtp_audio.packetsReceived": string;
+        "inboundrtp_video.packetsLost": string;
+        "inboundrtp_audio.packetsLost": string;
+        "firefoxRemoteAddress": string;
     };
-    standardStatsFilter: any; //stub
+    standardStatsFilter: any; // isFirefox ? self.firefoxStatsFilter : self.chromeStatsFilter;
     /** Provide a set of application defined fields that will be part of this instances
      * configuration information. This data will get sent to other peers via the websocket
      * path.
@@ -470,7 +470,7 @@ interface Easyrtc {
       * library) to be used within easyrtc. Tracking when it closes
       * must be done by the supplying party.
       */
-    register3rdPartyLocalMediaStream(stream: LocalMediaStream, streamName: string): void;
+    register3rdPartyLocalMediaStream(stream: MediaStream, streamName: string): void;
 
     getNameOfRemoteStream(easyrtcId: string, webrtcStream?: (string | {id: string})): MediaStream;
 
@@ -526,7 +526,7 @@ interface Easyrtc {
      * @example
      *    easyrtc.setVideoObjectSrc( document.getElementById("myVideo"), easyrtc.getLocalStream());
      */
-    getLocalStream(streamName?: string): LocalMediaStream;
+    getLocalStream(streamName?: string): MediaStream;
     /** Clears the media stream on a video object.
      *
      * @param {Object} element the video object.
@@ -563,7 +563,7 @@ interface Easyrtc {
      *             easyrtc.getLocalStream("camera1").getVideoTracks(),
      *             easyrtc.getLocalStream("camera2").getAudioTracks());
      */
-    buildLocalMediaStream(streamName: string, audioTracks: (MediaStreamTrack[] | MediaStreamTrackList), videoTracks: (MediaStreamTrack[] | MediaStreamTrackList)): MediaStream;
+    buildLocalMediaStream(streamName: string, audioTracks: MediaStreamTrack[], videoTracks: MediaStreamTrack[]): MediaStream;
 
     /** Initializes your access to a local camera and microphone.
      *  Failure could be caused a browser that didn't support WebRTC, or by the user
@@ -583,7 +583,7 @@ interface Easyrtc {
      *          });
      *
      */
-    initMediaSource(successCallback: (mediastream: LocalMediaStream) => void, errorCallback?: (errorCode: string, errorText: string) => void, streamName?: string): void;
+    initMediaSource(successCallback: (mediastream: MediaStream) => void, errorCallback?: (errorCode: string, errorText: string) => void, streamName?: string): void;
     /**
      * Sets the callback used to decide whether to accept or reject an incoming call.
      * @param {Function} acceptCheck takes the arguments (callerEasyrtcid, acceptor).
@@ -624,7 +624,7 @@ interface Easyrtc {
      *        document.getElementById("errMessageDiv").innerHTML += errorObject.errorText;
      *    });
      */
-    setOnError(errListener: (errorObject: {errorCode: string, errorText: string}) => void): void;
+    setOnError(errListener: (errorObject: {errorCode: string; errorText: string}) => void): void;
     /**
      * Sets the callCancelled callback. This will be called when a remote user
      * initiates a call to you, but does a "hangup" before you have a chance to get his video stream.
@@ -694,7 +694,7 @@ interface Easyrtc {
      *
      *
      */
-    setPeerListener(listener: (easyrtcid: string, msgType: string, msgData: any, targeting: {targetEasyrtcid?: string, targetGroup?: string, targetRoom?: string}) => void, msgType?: string, source?: string): void;
+    setPeerListener(listener: (easyrtcid: string, msgType: string, msgData: any, targeting: {targetEasyrtcid?: string; targetGroup?: string; targetRoom?: string}) => void, msgType?: string, source?: string): void;
     /**
      * Sets a listener for messages from the server.
      * @param {Function} listener has the signature (msgType, msgData, targeting)
@@ -703,7 +703,7 @@ interface Easyrtc {
      *         ("The Server sent the following message " + JSON.stringify(msgData));
      *     });
      */
-    setServerListener(listener: (msgType: string, msgData: any, targeting: {targetEasyrtcid?: string, targetGroup?: string, targetRoom?: string}) => void): void;
+    setServerListener(listener: (msgType: string, msgData: any, targeting: {targetEasyrtcid?: string; targetGroup?: string; targetRoom?: string}) => void): void;
     /**
      * Sets the url of the Socket server.
      * The node.js server is great as a socket server, but it doesn't have
@@ -717,7 +717,7 @@ interface Easyrtc {
      * @example
      *     easyrtc.setSocketUrl(":8080", options);
      */
-    setSocketUrl(socketUrl: string, options?: {'connect timeout'?: number, 'force new connection'?: boolean}): void;    //stub
+    setSocketUrl(socketUrl: string, options?: {'connect timeout'?: number; 'force new connection'?: boolean}): void;    //stub
     /**
      * Sets the user name associated with the connection.
      * @param {String} username must obey standard identifier conventions.
@@ -734,7 +734,7 @@ interface Easyrtc {
      * @param {String} room - an optional room name argument limiting results to a particular room.
      * @returns {Array} an array of {easyrtcid:id, roomName: roomName}.
      */
-    usernameToIds(username: string, room?: string): {easyrtcid: string, roomName: string}[];
+    usernameToIds(username: string, room?: string): {easyrtcid: string; roomName: string}[];
     /**
      * Returns another peers API field, if it exists.
      * @param {type} roomName
@@ -777,7 +777,7 @@ interface Easyrtc {
      * for people who want to try filtering ice server configuration on the client.
      * @return {Object} which has the form {iceServers:[ice_server_entry, ice_server_entry, ...]}
      */
-    getServerIce(): {iceServers?: {url: string, credential?: string, username?: string}[]};
+    getServerIce(): {iceServers?: {url: string; credential?: string; username?: string}[]};
     /**
      * Sets the ice server configuration that will be used in subsequent calls. You only need this function if you are filtering
      * the ice server configuration on the client or if you are using TURN certificates that have a very short lifespan.
@@ -796,7 +796,7 @@ interface Easyrtc {
      *      ]});
      *      easyrtc.call(...);
      */
-    setIceUsedInCalls(ice: {iceServers?: {url: string, credential?: string, username?: string}[]}): void;
+    setIceUsedInCalls(ice: {iceServers?: {url: string; credential?: string; username?: string}[]}): void;
     /** Determines if a particular peer2peer connection has an audio track.
      * @param {String} easyrtcid - the id of the other caller in the connection. If easyrtcid is not supplied, checks the local media.
      * @param {String} streamName - an optional stream id.
@@ -921,7 +921,7 @@ interface Easyrtc {
      *         }
      *    );
      */
-    getRoomList(callback: (roomList: {[roomName: string]: {roomName: string, numberClients: number}}) => void, errorCallback?: (errorCode: string, errorText: string) => void): void;
+    getRoomList(callback: (roomList: {[roomName: string]: {roomName: string; numberClients: number}}) => void, errorCallback?: (errorCode: string, errorText: string) => void): void;
     /** Value returned by easyrtc.getConnectStatus if the other user isn't connected to us. */
     NOT_CONNECTED: string;
     /** Value returned by easyrtc.getConnectStatus if the other user is in the process of getting connected */
@@ -1041,7 +1041,7 @@ interface Easyrtc {
      *  }
      * @returns {Object}
      */
-    getSessionFields(): {[fieldName: string]: {fieldName: string, fieldValue: any}};
+    getSessionFields(): {[fieldName: string]: {fieldName: string; fieldValue: any}};
     /**
      * Fetch the value of a session field by name.
      * @param {String} name - name of the session field to be fetched.
@@ -1100,17 +1100,17 @@ interface Easyrtc {
      * @returns {Object} A dictionary containing entries of the form {key:{'fieldName':key, 'fieldValue':value1}} or undefined
      * if you are not connected to the room.
      */
-    getRoomFields(roomName: string): {[fieldName: string]: {fieldName: string, fieldValue: any}};
+    getRoomFields(roomName: string): {[fieldName: string]: {fieldName: string; fieldValue: any}};
     /** Get server defined fields associated with the current application. Only valid
      * after a connection has been made.
      * @returns {Object} A dictionary containing entries of the form {key:{'fieldName':key, 'fieldValue':value1}}
      */
-    getApplicationFields(): {[fieldName: string]: {fieldName: string, fieldValue: any}};
+    getApplicationFields(): {[fieldName: string]: {fieldName: string; fieldValue: any}};
     /** Get server defined fields associated with the connection. Only valid
      * after a connection has been made.
      * @returns {Object} A dictionary containing entries of the form {key:{'fieldName':key, 'fieldValue':value1}}
      */
-    getConnectionFields(): {[fieldName: string]: {fieldName: string, fieldValue: any}};
+    getConnectionFields(): {[fieldName: string]: {fieldName: string; fieldValue: any}};
 
     /** By default, the easyApp routine sticks a "close" button on top of each caller
      * video object that it manages. Call this function(before calling easyApp) to disable that particular feature.
